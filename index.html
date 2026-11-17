@@ -3,624 +3,843 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f5f6f8">
-<title>45 Days Hard Challenge</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>45 Days Hard | Friends Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{margin:0;background:#f5f6f8;color:#17191e;font-family:Inter,Arial,sans-serif}
+.container{max-width:1100px;margin:auto;padding:20px 14px 70px}
+h1{font-size:clamp(27px,5vw,42px);letter-spacing:-1px;margin:12px 0}
+h2{font-size:20px}
+p{color:#777;font-size:13px;line-height:1.6}
+.card{background:white;border:1px solid #e8e9ec;border-radius:18px;padding:22px;margin-bottom:16px}
+.auth{max-width:440px;margin:50px auto}
+input,button{font:inherit}
+.field{margin:13px 0}
+label{display:block;font-size:12px;font-weight:700;margin-bottom:7px}
+input:not([type=checkbox]){
+ width:100%;padding:13px;border:1px solid #ddd;
+ border-radius:10px;outline:none;background:#fff
 }
-
-body {
-  margin: 0;
-  background: #f5f6f8;
-  color: #15171c;
-  font-family: Inter, Arial, sans-serif;
-}
-
-.container {
-  max-width: 1150px;
-  margin: auto;
-  padding: 24px 15px 70px;
-}
-
-/* HEADER */
-
-.header {
-  text-align: center;
-  padding: 25px 0;
-}
-
-.tag {
-  display: inline-block;
-  background: #e7f7ed;
-  color: #16834a;
-  padding: 9px 16px;
-  border-radius: 30px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-h1 {
-  font-size: clamp(28px, 5vw, 46px);
-  margin: 16px 0 10px;
-  font-weight: 900;
-  letter-spacing: -1.5px;
-}
-
-.subtitle {
-  color: #777;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-/* STATS */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 22px 0;
-}
-
-.stat {
-  background: white;
-  border: 1px solid #e9eaed;
-  border-radius: 17px;
-  padding: 22px 10px;
-  text-align: center;
-}
-
-.stat strong {
-  display: block;
-  font-size: 30px;
-  font-weight: 900;
-  margin-bottom: 6px;
-}
-
-.stat span {
-  font-size: 12px;
-  color: #777;
-  font-weight: 500;
-}
-
-/* PROGRESS */
-
-.progressBox {
-  background: white;
-  padding: 23px;
-  border-radius: 18px;
-  border: 1px solid #e9eaed;
-  margin-bottom: 20px;
-}
-
-.progressTitle {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.track {
-  height: 12px;
-  background: #e9edf0;
-  border-radius: 20px;
-  margin-top: 16px;
-  overflow: hidden;
-}
-
-.fill {
-  height: 100%;
-  width: 0;
-  background: #17ad65;
-  border-radius: 20px;
-  transition: width 0.3s ease;
-}
-
-/* TABLE */
-
-.tableWrap {
-  overflow-x: auto;
-  background: white;
-  border-radius: 18px;
-  border: 1px solid #e9eaed;
-  -webkit-overflow-scrolling: touch;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 950px;
-  text-align: center;
-}
-
-thead {
-  background: #15171c;
-  color: white;
-}
-
-th {
-  font-size: 11px;
-  padding: 18px 12px;
-  white-space: nowrap;
-  font-weight: 700;
-}
-
-th div {
-  margin-top: 7px;
-}
-
-td {
-  padding: 13px 9px;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 12px;
-}
-
-tbody tr:hover {
-  background: #f8faf9;
-}
-
-.day {
-  font-weight: 800;
-  font-size: 13px;
-}
-
-.date {
-  color: #777;
-  font-size: 11px;
-  margin-top: 5px;
-}
-
-/* CHECKBOX */
-
-.check {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 28px;
-  height: 28px;
-  border: 2px solid #d5d9de;
-  border-radius: 8px;
-  cursor: pointer;
-  background: white;
-  display: inline-grid;
-  place-content: center;
-  transition: 0.15s;
-}
-
-.check:checked {
-  background: #17ad65;
-  border-color: #17ad65;
-}
-
-.check:checked::after {
-  content: "✓";
-  color: white;
-  font-weight: 900;
-  font-size: 20px;
-}
-
-.check:focus-visible {
-  outline: 3px solid #8adbb1;
-  outline-offset: 3px;
-}
-
-/* SCORE */
-
-.score {
-  font-weight: 800;
-  color: #777;
-}
-
-.score.done {
-  color: #119d58;
-}
-
-.completed {
-  background: #f1fbf5;
-}
-
-/* TODAY */
-
-.today .day {
-  color: #119d58;
-}
-
-.todayLabel {
-  display: inline-block;
-  margin-top: 5px;
-  font-size: 9px;
-  font-weight: 800;
-  background: #e1f7e9;
-  color: #128d50;
-  padding: 4px 7px;
-  border-radius: 6px;
-}
-
-/* FOOTER */
-
-.footer {
-  text-align: center;
-  color: #999;
-  font-size: 12px;
-  margin-top: 27px;
-  font-weight: 600;
-}
-
-/* MOBILE */
-
-@media(max-width:600px) {
-  .container {
-    padding: 14px 10px 50px;
-  }
-
-  .header {
-    padding: 25px 0 15px;
-  }
-
-  .stats {
-    gap: 7px;
-  }
-
-  .stat {
-    padding: 17px 5px;
-  }
-
-  .stat strong {
-    font-size: 23px;
-  }
-
-  .stat span {
-    font-size: 10px;
-  }
-
-  .progressBox {
-    padding: 18px;
-  }
-
-  .progressTitle {
-    font-size: 12px;
-  }
-
-  .subtitle {
-    font-size: 11px;
-  }
+input:focus{border-color:#16a365}
+button{border:0;border-radius:10px;padding:13px 17px;cursor:pointer;font-weight:700}
+.primary{background:#17a864;color:white;width:100%}
+.secondary{background:#f0f2f4;color:#222}
+button:disabled{opacity:.55;cursor:wait}
+.row{display:flex;gap:10px;align-items:center}
+.between{justify-content:space-between}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{text-align:center}
+.stat strong{display:block;font-size:29px}
+.stat small{color:#777}
+.hidden{display:none!important}
+.link{background:none;color:#139758;padding:9px}
+.error{color:#d52b43!important}
+.success{color:#15985b!important}
+.message{min-height:18px}
+.tabs{display:flex;gap:8px;margin:20px 0}
+.tabs button{flex:1}
+.active{background:#17191e;color:white}
+.progress{height:9px;background:#e8ebee;border-radius:20px;overflow:hidden;margin-top:9px}
+.fill{height:100%;background:#16ad65;transition:width .25s}
+.tableWrap{overflow:auto;border-radius:15px;border:1px solid #eee}
+table{border-collapse:collapse;width:100%;min-width:780px;background:white;text-align:center}
+th{background:#191b20;color:white;font-size:11px;padding:16px 9px;white-space:nowrap}
+td{border-bottom:1px solid #eee;padding:12px 9px;font-size:12px}
+.check{width:25px;height:25px;accent-color:#16ad65;cursor:pointer}
+.day{font-weight:800}
+.muted{color:#888}
+.member{padding:15px 0;border-bottom:1px solid #eee}
+.member:last-child{border:0}
+.avatar{width:40px;height:40px;border-radius:50%;background:#e4f6eb;display:grid;place-items:center;font-weight:800;color:#138a4e;flex-shrink:0}
+.memberInfo{flex:1;min-width:0}
+.memberInfo strong{font-size:14px}
+.memberInfo small{display:block;color:#888;margin-top:5px;line-height:1.5}
+.rank{font-size:13px;font-weight:800}
+.badge{font-size:11px;background:#e7f7ed;color:#128c50;padding:6px 9px;border-radius:20px}
+.dayHeading{font-size:13px;font-weight:800;margin:18px 0 10px}
+.habitLine{display:flex;align-items:center;justify-content:space-between;padding:10px;border-bottom:1px solid #eee;font-size:12px}
+.habitLine:last-child{border:0}
+@media(max-width:600px){
+ .container{padding:12px 10px 50px}
+ .card{padding:17px}
+ .grid{gap:7px}
+ .stat strong{font-size:23px}
+ .stat small{font-size:10px}
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
-  <!-- HEADER -->
+<section id="authScreen" class="auth card">
+ <div style="text-align:center">
+  <div class="badge">NEW YEAR TRANSFORMATION</div>
+  <h1>45 DAYS HARD 🔥</h1>
+  <p>18 Nov 2026 — 01 Jan 2027</p>
+ </div>
 
-  <header class="header">
-    <div class="tag">
-      DISCIPLINE • CONSISTENCY • RESULTS
+ <h2 id="authTitle">Welcome Back</h2>
+
+ <form id="authForm">
+  <div id="registerFields" class="hidden">
+   <div class="field">
+    <label>Full Name</label>
+    <input id="fullName" autocomplete="name">
+   </div>
+   <div class="row">
+    <div class="field" style="flex:1">
+     <label>Age (18+)</label>
+     <input id="age" type="number" min="18" max="120">
     </div>
-
-    <h1>45 DAYS HARD 🔥</h1>
-
-    <div class="subtitle">
-      18 NOV 2026 — 01 JAN 2027
-      | NEW YEAR TRANSFORMATION
+    <div class="field" style="flex:1">
+     <label>Weight (kg)</label>
+     <input id="weight" type="number" min="1" max="500" step=".1">
     </div>
-  </header>
-
-  <!-- STATS -->
-
-  <div class="stats">
-
-    <div class="stat">
-      <strong id="completedDays">0</strong>
-      <span>Perfect Days</span>
+   </div>
+   <div class="row">
+    <div class="field" style="flex:1">
+     <label>Height (cm)</label>
+     <input id="height" type="number" min="50" max="250" step=".1">
     </div>
-
-    <div class="stat">
-      <strong id="completedHabits">0</strong>
-      <span>Habits Completed</span>
+    <div class="field" style="flex:1">
+     <label>Wake-up Goal</label>
+     <input id="wakeTime" type="time" value="05:00">
     </div>
-
-    <div class="stat">
-      <strong id="progressPercent">0%</strong>
-      <span>Overall Progress</span>
-    </div>
-
+   </div>
+   <div class="field">
+    <label style="display:flex;gap:9px;align-items:flex-start;font-weight:500;line-height:1.5">
+     <input id="consent" type="checkbox">
+     I agree to share my name, age, weight, height,
+     wake-up goal and challenge progress with other
+     registered challenge members.
+    </label>
+   </div>
   </div>
 
-  <!-- PROGRESS -->
-
-  <div class="progressBox">
-
-    <div class="progressTitle">
-      <span>Overall Challenge Progress</span>
-      <span id="progressText">0 / 315</span>
-    </div>
-
-    <div class="track">
-      <div class="fill" id="progressFill"></div>
-    </div>
-
+  <div class="field">
+   <label>Email Address</label>
+   <input id="email" type="email" required autocomplete="email">
   </div>
+  <div class="field">
+   <label>Password</label>
+   <input id="password" type="password" required minlength="8" autocomplete="current-password">
+  </div>
+  <button id="authSubmit" class="primary" type="submit">Login</button>
+ </form>
 
-  <!-- CHALLENGE TABLE -->
+ <p id="authMessage" class="message"></p>
+ <div style="text-align:center">
+  <button id="switchAuth" class="link">Create new account</button>
+ </div>
+</section>
 
-  <div class="tableWrap">
+<section id="appScreen" class="hidden">
+ <header class="row between" style="margin:20px 0">
+  <div>
+   <div class="badge">FRIENDS CHALLENGE</div>
+   <h1>45 DAYS HARD 🔥</h1>
+   <p id="welcomeText">18 NOV — 01 JAN</p>
+  </div>
+  <button id="logoutBtn" class="secondary">Logout</button>
+ </header>
 
+ <div class="grid">
+  <div class="card stat">
+   <strong id="perfectDays">0</strong>
+   <small>Perfect Days</small>
+  </div>
+  <div class="card stat">
+   <strong id="habitsDone">0</strong>
+   <small>Habits Done</small>
+  </div>
+  <div class="card stat">
+   <strong id="overallPercent">0%</strong>
+   <small>Progress</small>
+  </div>
+ </div>
+
+ <div class="card">
+  <div class="row between">
+   <strong>My Challenge Progress</strong>
+   <span id="progressCount">0 / 315</span>
+  </div>
+  <div class="progress">
+   <div class="fill" id="overallFill" style="width:0%"></div>
+  </div>
+ </div>
+
+ <div class="tabs">
+  <button class="active" data-tab="tracker">My Tracker</button>
+  <button class="secondary" data-tab="friends">Friends 🏆</button>
+  <button class="secondary" data-tab="profile">My Profile</button>
+ </div>
+
+ <p id="appMessage" class="message"></p>
+
+ <div id="trackerTab">
+  <div class="card">
+   <h2>Daily Habit Tracker</h2>
+   <p>Tick your habits. Progress automatically saves online.</p>
+   <div class="tableWrap">
     <table>
-
-      <thead>
-        <tr>
-          <th>DAY / DATE</th>
-
-          <th>
-            🏋️
-            <div>GYM</div>
-          </th>
-
-          <th>
-            🥩
-            <div>140G PROTEIN</div>
-          </th>
-
-          <th>
-            🚶
-            <div>10K STEPS</div>
-          </th>
-
-          <th>
-            ⏰
-            <div>3:40 AM</div>
-          </th>
-
-          <th>
-            💪
-            <div>CREATINE</div>
-          </th>
-
-          <th>
-            🍔
-            <div>NO OUTSIDE FOOD</div>
-          </th>
-
-          <th>
-            🍬
-            <div>NO ADDED SUGAR</div>
-          </th>
-
-          <th>PROGRESS</th>
-        </tr>
-      </thead>
-
-      <tbody id="challengeBody"></tbody>
-
+     <thead>
+      <tr>
+       <th>DAY</th>
+       <th>🏋️ GYM</th>
+       <th>🥩 PROTEIN</th>
+       <th>🚶 STEPS</th>
+       <th>⏰ WAKE</th>
+       <th>💪 CREATINE</th>
+       <th>🍔 NO OUTSIDE</th>
+       <th>🍬 NO SUGAR</th>
+       <th>SCORE</th>
+      </tr>
+     </thead>
+     <tbody id="trackerBody"></tbody>
     </table>
-
+   </div>
   </div>
+ </div>
 
-  <div class="footer">
-    45 DAYS. 7 HABITS. ONE GOAL. 💪🔥
+ <div id="friendsTab" class="hidden">
+  <div class="card">
+   <div class="row between">
+    <h2>Friends Leaderboard 🏆</h2>
+    <button id="refreshFriends" class="secondary">Refresh</button>
+   </div>
+   <p>All registered members and their progress.</p>
+   <div id="friendsList">Loading...</div>
   </div>
+  <div id="friendDetails" class="card hidden"></div>
+ </div>
+
+ <div id="profileTab" class="hidden">
+  <div class="card">
+   <h2>My Profile</h2>
+   <form id="profileForm">
+    <div class="field">
+     <label>Full Name</label>
+     <input id="profileName" required>
+    </div>
+    <div class="row">
+     <div class="field" style="flex:1">
+      <label>Age</label>
+      <input id="profileAge" type="number" min="18" max="120" required>
+     </div>
+     <div class="field" style="flex:1">
+      <label>Weight (kg)</label>
+      <input id="profileWeight" type="number" min="1" max="500" step=".1" required>
+     </div>
+    </div>
+    <div class="row">
+     <div class="field" style="flex:1">
+      <label>Height (cm)</label>
+      <input id="profileHeight" type="number" min="50" max="250" step=".1" required>
+     </div>
+     <div class="field" style="flex:1">
+      <label>Wake-up Goal</label>
+      <input id="profileWake" type="time" required>
+     </div>
+    </div>
+    <button class="primary">Save Profile</button>
+   </form>
+  </div>
+ </div>
+</section>
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
+/* SUPABASE CONFIG */
+
+const SUPABASE_URL =
+ "https://xremxtmyflokussigigz.supabase.co";
+
+const SUPABASE_KEY =
+ "sb_publishable_7Hhcm3Lbw5MDtsx9GfJglg_TdNGbJGt";
+
+const db = window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_KEY
+);
 
 /* CHALLENGE CONFIG */
 
+const START = new Date(2026,10,18);
 const DAYS = 45;
-const HABITS = 7;
 
-const KEY = "hardChallenge45_Nov18_2026";
+const FIELDS = [
+ "gym",
+ "protein_140g",
+ "steps_10k",
+ "wake_up",
+ "creatine",
+ "no_outside_food",
+ "no_added_sugar"
+];
 
-const startDate = new Date(2026, 10, 18);
+const LABELS = [
+ "Gym Workout",
+ "140g Protein",
+ "10,000 Steps",
+ "Wake-up Goal",
+ "Creatine",
+ "No Outside Food",
+ "No Added Sugar"
+];
 
-const tbody = document.getElementById("challengeBody");
+let user = null;
+let profile = null;
+let progress = {};
+let registering = false;
+let channel = null;
 
-/* LOAD SAVED DATA */
+const $ = id => document.getElementById(id);
 
-let saved = {};
-
-try {
-  saved = JSON.parse(localStorage.getItem(KEY)) || {};
-} catch (error) {
-  saved = {};
+function msg(id,text,error=false){
+ const el=$(id);
+ el.textContent=text;
+ el.className="message "+(error?"error":"success");
 }
 
-/* FORMAT DATE */
+function safe(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ })[c]);
+}
 
-function formatDate(date) {
-  return date.toLocaleDateString("en-IN", {
-    day: "2-digit",
-    month: "short"
+function dateAt(day){
+ const d=new Date(START);
+ d.setDate(START.getDate()+day);
+ return d;
+}
+
+function dateKey(day){
+ const d=dateAt(day);
+ return [
+  d.getFullYear(),
+  String(d.getMonth()+1).padStart(2,"0"),
+  String(d.getDate()).padStart(2,"0")
+ ].join("-");
+}
+
+function dateLabel(day){
+ return dateAt(day).toLocaleDateString("en-IN",{
+  day:"2-digit",month:"short"
+ });
+}
+
+function countHabits(row){
+ return FIELDS.filter(f=>row?.[f]===true).length;
+}
+
+function showScreen(loggedIn){
+ $("authScreen").classList.toggle("hidden",loggedIn);
+ $("appScreen").classList.toggle("hidden",!loggedIn);
+}
+
+/* LOGIN / SIGNUP */
+
+$("switchAuth").onclick=()=>{
+ registering=!registering;
+ $("registerFields").classList.toggle("hidden",!registering);
+ $("authTitle").textContent=registering?
+  "Create Your Account":"Welcome Back";
+ $("authSubmit").textContent=registering?"Sign Up":"Login";
+ $("switchAuth").textContent=registering?
+  "Already have an account? Login":"Create new account";
+ $("password").autocomplete=registering?
+  "new-password":"current-password";
+ msg("authMessage","");
+};
+
+$("authForm").onsubmit=async e=>{
+ e.preventDefault();
+ const btn=$("authSubmit");
+ btn.disabled=true;
+ msg("authMessage","Please wait...");
+
+ try{
+  const email=$("email").value.trim();
+  const password=$("password").value;
+
+  if(registering){
+   const name=$("fullName").value.trim();
+   const age=Number($("age").value);
+   const weight=Number($("weight").value);
+   const height=Number($("height").value);
+   const wake=$("wakeTime").value;
+
+   if(!name||age<18||age>120||
+      weight<=0||weight>500||
+      height<50||height>250||!wake){
+    throw Error("Enter valid profile details. 18+ only.");
+   }
+   if(!$("consent").checked){
+    throw Error("Please agree to group profile sharing.");
+   }
+
+   const {data,error}=await db.auth.signUp({
+    email,password,
+    options:{
+     emailRedirectTo:location.origin+location.pathname,
+     data:{
+      full_name:name,
+      age,
+      weight_kg:weight,
+      height_cm:height,
+      wake_up_time:wake
+     }
+    }
+   });
+   if(error)throw error;
+
+   if(!data.session){
+    msg("authMessage",
+     "Signup submitted. Check your email and verify your account, then login.");
+   }else{
+    await startApp(data.user);
+   }
+
+  }else{
+   const {data,error}=await db.auth.signInWithPassword({
+    email,password
+   });
+   if(error)throw error;
+   await startApp(data.user);
+  }
+
+ }catch(err){
+  msg("authMessage",err.message,true);
+ }finally{
+  btn.disabled=false;
+ }
+};
+
+/* PROFILE AND MEMBERSHIP */
+
+async function setupProfile(){
+ const {data:existing,error:readError}=await db
+  .from("challenge_profiles")
+  .select("*")
+  .eq("user_id",user.id)
+  .maybeSingle();
+
+ if(readError)throw readError;
+
+ if(existing){
+  profile=existing;
+ }else{
+  const m=user.user_metadata||{};
+  if(!m.full_name||!m.age||!m.weight_kg||!m.height_cm){
+   throw Error(
+    "Profile details missing. Please contact challenge admin."
+   );
+  }
+
+  const {error}=await db.from("challenge_profiles")
+   .insert({
+    user_id:user.id,
+    full_name:m.full_name,
+    age:Number(m.age),
+    weight_kg:Number(m.weight_kg),
+    height_cm:Number(m.height_cm),
+    wake_up_time:m.wake_up_time||"05:00"
+   });
+
+  if(error)throw error;
+ }
+
+ const {error:joinError}=await db
+  .from("challenge_members")
+  .upsert({user_id:user.id},{onConflict:"user_id"});
+
+ if(joinError)throw joinError;
+
+ const {data,error}=await db
+  .from("challenge_profiles")
+  .select("*")
+  .eq("user_id",user.id)
+  .single();
+
+ if(error)throw error;
+ profile=data;
+}
+
+function fillProfile(){
+ $("profileName").value=profile.full_name||"";
+ $("profileAge").value=profile.age||"";
+ $("profileWeight").value=profile.weight_kg||"";
+ $("profileHeight").value=profile.height_cm||"";
+ $("profileWake").value=
+  String(profile.wake_up_time||"05:00").slice(0,5);
+ $("welcomeText").textContent=
+  "Welcome, "+profile.full_name+" • 18 NOV — 01 JAN";
+}
+
+$("profileForm").onsubmit=async e=>{
+ e.preventDefault();
+ try{
+  const updated={
+   full_name:$("profileName").value.trim(),
+   age:Number($("profileAge").value),
+   weight_kg:Number($("profileWeight").value),
+   height_cm:Number($("profileHeight").value),
+   wake_up_time:$("profileWake").value
+  };
+  if(!updated.full_name||updated.age<18||
+     updated.age>120||updated.weight_kg<=0||
+     updated.weight_kg>500||updated.height_cm<50||
+     updated.height_cm>250||!updated.wake_up_time){
+   throw Error("Enter valid profile details.");
+  }
+
+  const {error}=await db.from("challenge_profiles")
+   .update(updated).eq("user_id",user.id);
+
+  if(error)throw error;
+  profile={...profile,...updated};
+  fillProfile();
+  msg("appMessage","Profile updated!");
+ }catch(err){
+  msg("appMessage",err.message,true);
+ }
+};
+
+/* LOAD DAILY PROGRESS */
+
+async function loadProgress(){
+ const {data,error}=await db
+  .from("challenge_daily_progress")
+  .select("*")
+  .eq("user_id",user.id);
+
+ if(error)throw error;
+
+ progress={};
+ (data||[]).forEach(row=>{
+  progress[row.challenge_date]=row;
+ });
+
+ renderTracker();
+}
+
+function renderTracker(){
+ let html="";
+
+ for(let day=0;day<DAYS;day++){
+  const key=dateKey(day);
+  const row=progress[key]||{};
+  const count=countHabits(row);
+
+  html+=`<tr>
+   <td><div class="day">DAY ${day+1}</div>
+   <div class="muted">${dateLabel(day)}</div></td>`;
+
+  FIELDS.forEach((field,index)=>{
+   html+=`<td>
+    <input type="checkbox" class="check"
+     data-date="${key}" data-field="${field}"
+     aria-label="Day ${day+1} ${LABELS[index]}"
+     ${row[field]?"checked":""}>
+   </td>`;
   });
+
+  html+=`<td><strong>${count}/7</strong></td></tr>`;
+ }
+
+ $("trackerBody").innerHTML=html;
+
+ document.querySelectorAll(".check").forEach(box=>{
+  box.addEventListener("change",saveHabit);
+ });
+
+ updateStats();
 }
 
-/* CHECK TODAY */
+async function saveHabit(e){
+ const box=e.target;
+ const date=box.dataset.date;
+ const field=box.dataset.field;
+ const checked=box.checked;
 
-function isToday(date) {
-  const today = new Date();
+ box.disabled=true;
 
-  return (
-    today.getFullYear() === date.getFullYear() &&
-    today.getMonth() === date.getMonth() &&
-    today.getDate() === date.getDate()
-  );
+ const old={...(progress[date]||{})};
+
+ progress[date]={
+  ...old,
+  [field]:checked
+ };
+
+ updateStats();
+
+ try{
+  const {error}=await db
+   .from("challenge_daily_progress")
+   .upsert({
+    user_id:user.id,
+    challenge_date:date,
+    [field]:checked
+   },{
+    onConflict:"user_id,challenge_date"
+   });
+
+  if(error)throw error;
+
+  // Reload the authoritative row after saving.
+  await loadProgress();
+  msg("appMessage","Progress saved online!");
+
+ }catch(err){
+  progress[date]=old;
+  box.checked=!checked;
+  updateStats();
+  msg("appMessage",err.message,true);
+ }finally{
+  box.disabled=false;
+ }
 }
 
-/* GENERATE 45 DAYS */
+function updateStats(){
+ let total=0,perfect=0;
 
-function render() {
+ for(let day=0;day<DAYS;day++){
+  const count=countHabits(progress[dateKey(day)]);
+  total+=count;
+  if(count===7)perfect++;
+ }
 
-  tbody.innerHTML = "";
+ const pct=Math.round(total/315*100);
 
-  for (let day = 0; day < DAYS; day++) {
-
-    const date = new Date(startDate);
-    date.setDate(startDate.getDate() + day);
-
-    const tr = document.createElement("tr");
-
-    if (isToday(date)) {
-      tr.classList.add("today");
-    }
-
-    /* DAY CELL */
-
-    const dayCell = document.createElement("td");
-
-    dayCell.innerHTML = `
-      <div class="day">DAY ${day + 1}</div>
-      <div class="date">${formatDate(date)}</div>
-      ${isToday(date)
-        ? '<div class="todayLabel">TODAY</div>'
-        : ''}
-    `;
-
-    tr.appendChild(dayCell);
-
-    /* 7 HABITS */
-
-    for (let habit = 0; habit < HABITS; habit++) {
-
-      const td = document.createElement("td");
-
-      const input = document.createElement("input");
-
-      input.type = "checkbox";
-      input.className = "check";
-
-      const id = day + "_" + habit;
-
-      input.checked = !!saved[id];
-
-      input.setAttribute(
-        "aria-label",
-        "Day " + (day + 1) + ", habit " + (habit + 1)
-      );
-
-      input.addEventListener("change", () => {
-
-        saved[id] = input.checked;
-
-        /* AUTO SAVE */
-
-        try {
-          localStorage.setItem(
-            KEY,
-            JSON.stringify(saved)
-          );
-        } catch (error) {
-          console.warn("Could not save progress", error);
-        }
-
-        updateProgress();
-
-      });
-
-      td.appendChild(input);
-      tr.appendChild(td);
-
-    }
-
-    /* DAILY SCORE */
-
-    const score = document.createElement("td");
-
-    score.className = "score";
-    score.dataset.score = day;
-
-    tr.appendChild(score);
-
-    tbody.appendChild(tr);
-
-  }
-
-  updateProgress();
-
+ $("perfectDays").textContent=perfect;
+ $("habitsDone").textContent=total;
+ $("overallPercent").textContent=pct+"%";
+ $("progressCount").textContent=total+" / 315";
+ $("overallFill").style.width=pct+"%";
 }
 
-/* UPDATE PROGRESS */
+/* FRIENDS LEADERBOARD */
 
-function updateProgress() {
+async function loadFriends(){
+ const {data:members,error:memberError}=await db
+  .from("challenge_members")
+  .select("user_id");
 
-  let total = 0;
-  let perfect = 0;
+ if(memberError)throw memberError;
 
-  for (let day = 0; day < DAYS; day++) {
+ const ids=(members||[]).map(m=>m.user_id);
+ if(!ids.length){
+  $("friendsList").textContent="No members yet.";
+  return;
+ }
 
-    let count = 0;
+ const {data:profiles,error:profileError}=await db
+  .from("challenge_profiles")
+  .select("*")
+  .in("user_id",ids);
 
-    for (let habit = 0; habit < HABITS; habit++) {
+ if(profileError)throw profileError;
 
-      if (saved[day + "_" + habit]) {
-        count++;
-      }
+ const {data:allProgress,error:progressError}=await db
+  .from("challenge_daily_progress")
+  .select("*")
+  .in("user_id",ids);
 
-    }
+ if(progressError)throw progressError;
 
-    total += count;
-
-    if (count === HABITS) {
-      perfect++;
-    }
-
-    const score = document.querySelector(
-      '[data-score="' + day + '"]'
-    );
-
-    score.textContent = count + "/" + HABITS;
-
-    score.classList.toggle(
-      "done",
-      count === HABITS
-    );
-
-    score.parentElement.classList.toggle(
-      "completed",
-      count === HABITS
-    );
-
-  }
-
-  const maximum = DAYS * HABITS;
-
-  const percent = Math.round(
-    (total / maximum) * 100
+ const people=(profiles||[]).map(p=>{
+  const rows=(allProgress||[]).filter(
+   r=>r.user_id===p.user_id
   );
 
-  document.getElementById(
-    "completedDays"
-  ).textContent = perfect;
+  const total=rows.reduce(
+   (sum,r)=>sum+countHabits(r),0
+  );
 
-  document.getElementById(
-    "completedHabits"
-  ).textContent = total;
+  return {
+   ...p,
+   total,
+   percent:Math.round(total/315*100),
+   perfect:rows.filter(r=>countHabits(r)===7).length,
+   rows
+  };
+ }).sort((a,b)=>b.total-a.total);
 
-  document.getElementById(
-    "progressPercent"
-  ).textContent = percent + "%";
+ $("friendsList").innerHTML=people.map((p,i)=>`
+  <div class="member">
+   <div class="row">
+    <span class="rank">#${i+1}</span>
+    <div class="avatar">${safe(p.full_name.charAt(0).toUpperCase())}</div>
+    <div class="memberInfo">
+     <strong>${safe(p.full_name)}</strong>
+     <small>
+      Age ${safe(p.age)} •
+      ${safe(p.weight_kg)} kg •
+      ${safe(p.height_cm)} cm
+     </small>
+     <small>Wake-up: ${safe(String(p.wake_up_time).slice(0,5))}</small>
+     <div class="progress">
+      <div class="fill" style="width:${p.percent}%"></div>
+     </div>
+    </div>
+    <div style="text-align:right">
+     <strong>${p.percent}%</strong>
+     <small style="display:block">${p.total}/315</small>
+    </div>
+   </div>
+   <button class="secondary" style="margin-top:10px;width:100%"
+    data-view="${safe(p.user_id)}">
+    View Daily Progress
+   </button>
+  </div>
+ `).join("");
 
-  document.getElementById(
-    "progressText"
-  ).textContent = total + " / " + maximum;
-
-  document.getElementById(
-    "progressFill"
-  ).style.width = percent + "%";
-
+ document.querySelectorAll("[data-view]").forEach(btn=>{
+  btn.onclick=()=>{
+   const p=people.find(x=>x.user_id===btn.dataset.view);
+   if(p)showFriend(p);
+  };
+ });
 }
 
-/* INITIALIZE */
+function showFriend(p){
+ const map={};
+ p.rows.forEach(r=>map[r.challenge_date]=r);
 
-render();
+ let html=`
+  <div class="row between">
+   <h2>${safe(p.full_name)} — Daily Progress</h2>
+   <button class="secondary" id="closeFriend">Close</button>
+  </div>
+  <p>Age ${safe(p.age)} • ${safe(p.weight_kg)} kg •
+  ${safe(p.height_cm)} cm • Wake-up ${safe(String(p.wake_up_time).slice(0,5))}</p>
+ `;
 
+ for(let day=0;day<DAYS;day++){
+  const row=map[dateKey(day)]||{};
+  html+=`
+   <div class="dayHeading">
+    Day ${day+1} — ${dateLabel(day)}
+    (${countHabits(row)}/7)
+   </div>
+  `;
+  FIELDS.forEach((field,i)=>{
+   html+=`
+    <div class="habitLine">
+     <span>${safe(LABELS[i])}</span>
+     <strong>${row[field]?"✅":"—"}</strong>
+    </div>
+   `;
+  });
+ }
+
+ $("friendDetails").innerHTML=html;
+ $("friendDetails").classList.remove("hidden");
+ $("closeFriend").onclick=()=>{
+  $("friendDetails").classList.add("hidden");
+ };
+}
+
+/* NAVIGATION */
+
+document.querySelectorAll("[data-tab]").forEach(btn=>{
+ btn.onclick=async()=>{
+  const tab=btn.dataset.tab;
+
+  ["tracker","friends","profile"].forEach(name=>{
+   $(name+"Tab").classList.toggle("hidden",name!==tab);
+  });
+
+  document.querySelectorAll("[data-tab]").forEach(b=>{
+   const active=b.dataset.tab===tab;
+   b.classList.toggle("active",active);
+   b.classList.toggle("secondary",!active);
+  });
+
+  if(tab==="friends"){
+   try{await loadFriends();}
+   catch(err){msg("appMessage",err.message,true);}
+  }
+ };
+});
+
+$("refreshFriends").onclick=async()=>{
+ try{await loadFriends();}
+ catch(err){msg("appMessage",err.message,true);}
+};
+
+/* REALTIME */
+
+function startRealtime(){
+ if(channel)db.removeChannel(channel);
+
+ channel=db.channel("challenge-live")
+  .on("postgres_changes",{
+   event:"*",
+   schema:"public",
+   table:"challenge_daily_progress"
+  },async()=>{
+   try{
+    await loadProgress();
+    if(!$("friendsTab").classList.contains("hidden")){
+     await loadFriends();
+    }
+   }catch(err){console.error(err);}
+  })
+  .subscribe();
+}
+
+/* START APP */
+
+async function startApp(currentUser){
+ try{
+  user=currentUser;
+  await setupProfile();
+  fillProfile();
+  await loadProgress();
+  showScreen(true);
+  startRealtime();
+ }catch(err){
+  showScreen(false);
+  msg("authMessage",err.message,true);
+ }
+}
+
+$("logoutBtn").onclick=async()=>{
+ if(channel){
+  await db.removeChannel(channel);
+  channel=null;
+ }
+ await db.auth.signOut();
+ user=null;
+ profile=null;
+ progress={};
+ showScreen(false);
+};
+
+async function initialize(){
+ if(SUPABASE_KEY==="PASTE_YOUR_PUBLISHABLE_KEY_HERE"){
+  msg("authMessage","Please configure your Supabase publishable key.",true);
+  return;
+ }
+
+ const {data,error}=await db.auth.getUser();
+
+ if(error||!data.user){
+  showScreen(false);
+  return;
+ }
+
+ await startApp(data.user);
+}
+
+initialize();
 </script>
-
 </body>
 </html>
