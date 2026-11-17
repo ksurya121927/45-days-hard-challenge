@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f6f8">
+<title>45 Days Hard Challenge</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f5f6f8;
+  color: #15171c;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.container {
+  max-width: 1150px;
+  margin: auto;
+  padding: 24px 15px 70px;
+}
+
+/* HEADER */
+
+.header {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.tag {
+  display: inline-block;
+  background: #e7f7ed;
+  color: #16834a;
+  padding: 9px 16px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: clamp(28px, 5vw, 46px);
+  margin: 16px 0 10px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* STATS */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.stat {
+  background: white;
+  border: 1px solid #e9eaed;
+  border-radius: 17px;
+  padding: 22px 10px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 30px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.stat span {
+  font-size: 12px;
+  color: #777;
+  font-weight: 500;
+}
+
+/* PROGRESS */
+
+.progressBox {
+  background: white;
+  padding: 23px;
+  border-radius: 18px;
+  border: 1px solid #e9eaed;
+  margin-bottom: 20px;
+}
+
+.progressTitle {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.track {
+  height: 12px;
+  background: #e9edf0;
+  border-radius: 20px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  width: 0;
+  background: #17ad65;
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+/* TABLE */
+
+.tableWrap {
+  overflow-x: auto;
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #e9eaed;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 950px;
+  text-align: center;
+}
+
+thead {
+  background: #15171c;
+  color: white;
+}
+
+th {
+  font-size: 11px;
+  padding: 18px 12px;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+th div {
+  margin-top: 7px;
+}
+
+td {
+  padding: 13px 9px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 12px;
+}
+
+tbody tr:hover {
+  background: #f8faf9;
+}
+
+.day {
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.date {
+  color: #777;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+/* CHECKBOX */
+
+.check {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #d5d9de;
+  border-radius: 8px;
+  cursor: pointer;
+  background: white;
+  display: inline-grid;
+  place-content: center;
+  transition: 0.15s;
+}
+
+.check:checked {
+  background: #17ad65;
+  border-color: #17ad65;
+}
+
+.check:checked::after {
+  content: "✓";
+  color: white;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.check:focus-visible {
+  outline: 3px solid #8adbb1;
+  outline-offset: 3px;
+}
+
+/* SCORE */
+
+.score {
+  font-weight: 800;
+  color: #777;
+}
+
+.score.done {
+  color: #119d58;
+}
+
+.completed {
+  background: #f1fbf5;
+}
+
+/* TODAY */
+
+.today .day {
+  color: #119d58;
+}
+
+.todayLabel {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 9px;
+  font-weight: 800;
+  background: #e1f7e9;
+  color: #128d50;
+  padding: 4px 7px;
+  border-radius: 6px;
+}
+
+/* FOOTER */
+
+.footer {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  margin-top: 27px;
+  font-weight: 600;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+  .container {
+    padding: 14px 10px 50px;
+  }
+
+  .header {
+    padding: 25px 0 15px;
+  }
+
+  .stats {
+    gap: 7px;
+  }
+
+  .stat {
+    padding: 17px 5px;
+  }
+
+  .stat strong {
+    font-size: 23px;
+  }
+
+  .stat span {
+    font-size: 10px;
+  }
+
+  .progressBox {
+    padding: 18px;
+  }
+
+  .progressTitle {
+    font-size: 12px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+
+  <header class="header">
+    <div class="tag">
+      DISCIPLINE • CONSISTENCY • RESULTS
+    </div>
+
+    <h1>45 DAYS HARD 🔥</h1>
+
+    <div class="subtitle">
+      18 NOV 2026 — 01 JAN 2027
+      | NEW YEAR TRANSFORMATION
+    </div>
+  </header>
+
+  <!-- STATS -->
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong id="completedDays">0</strong>
+      <span>Perfect Days</span>
+    </div>
+
+    <div class="stat">
+      <strong id="completedHabits">0</strong>
+      <span>Habits Completed</span>
+    </div>
+
+    <div class="stat">
+      <strong id="progressPercent">0%</strong>
+      <span>Overall Progress</span>
+    </div>
+
+  </div>
+
+  <!-- PROGRESS -->
+
+  <div class="progressBox">
+
+    <div class="progressTitle">
+      <span>Overall Challenge Progress</span>
+      <span id="progressText">0 / 315</span>
+    </div>
+
+    <div class="track">
+      <div class="fill" id="progressFill"></div>
+    </div>
+
+  </div>
+
+  <!-- CHALLENGE TABLE -->
+
+  <div class="tableWrap">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>DAY / DATE</th>
+
+          <th>
+            🏋️
+            <div>GYM</div>
+          </th>
+
+          <th>
+            🥩
+            <div>140G PROTEIN</div>
+          </th>
+
+          <th>
+            🚶
+            <div>10K STEPS</div>
+          </th>
+
+          <th>
+            ⏰
+            <div>3:40 AM</div>
+          </th>
+
+          <th>
+            💪
+            <div>CREATINE</div>
+          </th>
+
+          <th>
+            🍔
+            <div>NO OUTSIDE FOOD</div>
+          </th>
+
+          <th>
+            🍬
+            <div>NO ADDED SUGAR</div>
+          </th>
+
+          <th>PROGRESS</th>
+        </tr>
+      </thead>
+
+      <tbody id="challengeBody"></tbody>
+
+    </table>
+
+  </div>
+
+  <div class="footer">
+    45 DAYS. 7 HABITS. ONE GOAL. 💪🔥
+  </div>
+
+</div>
+
+<script>
+
+/* CHALLENGE CONFIG */
+
+const DAYS = 45;
+const HABITS = 7;
+
+const KEY = "hardChallenge45_Nov18_2026";
+
+const startDate = new Date(2026, 10, 18);
+
+const tbody = document.getElementById("challengeBody");
+
+/* LOAD SAVED DATA */
+
+let saved = {};
+
+try {
+  saved = JSON.parse(localStorage.getItem(KEY)) || {};
+} catch (error) {
+  saved = {};
+}
+
+/* FORMAT DATE */
+
+function formatDate(date) {
+  return date.toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short"
+  });
+}
+
+/* CHECK TODAY */
+
+function isToday(date) {
+  const today = new Date();
+
+  return (
+    today.getFullYear() === date.getFullYear() &&
+    today.getMonth() === date.getMonth() &&
+    today.getDate() === date.getDate()
+  );
+}
+
+/* GENERATE 45 DAYS */
+
+function render() {
+
+  tbody.innerHTML = "";
+
+  for (let day = 0; day < DAYS; day++) {
+
+    const date = new Date(startDate);
+    date.setDate(startDate.getDate() + day);
+
+    const tr = document.createElement("tr");
+
+    if (isToday(date)) {
+      tr.classList.add("today");
+    }
+
+    /* DAY CELL */
+
+    const dayCell = document.createElement("td");
+
+    dayCell.innerHTML = `
+      <div class="day">DAY ${day + 1}</div>
+      <div class="date">${formatDate(date)}</div>
+      ${isToday(date)
+        ? '<div class="todayLabel">TODAY</div>'
+        : ''}
+    `;
+
+    tr.appendChild(dayCell);
+
+    /* 7 HABITS */
+
+    for (let habit = 0; habit < HABITS; habit++) {
+
+      const td = document.createElement("td");
+
+      const input = document.createElement("input");
+
+      input.type = "checkbox";
+      input.className = "check";
+
+      const id = day + "_" + habit;
+
+      input.checked = !!saved[id];
+
+      input.setAttribute(
+        "aria-label",
+        "Day " + (day + 1) + ", habit " + (habit + 1)
+      );
+
+      input.addEventListener("change", () => {
+
+        saved[id] = input.checked;
+
+        /* AUTO SAVE */
+
+        try {
+          localStorage.setItem(
+            KEY,
+            JSON.stringify(saved)
+          );
+        } catch (error) {
+          console.warn("Could not save progress", error);
+        }
+
+        updateProgress();
+
+      });
+
+      td.appendChild(input);
+      tr.appendChild(td);
+
+    }
+
+    /* DAILY SCORE */
+
+    const score = document.createElement("td");
+
+    score.className = "score";
+    score.dataset.score = day;
+
+    tr.appendChild(score);
+
+    tbody.appendChild(tr);
+
+  }
+
+  updateProgress();
+
+}
+
+/* UPDATE PROGRESS */
+
+function updateProgress() {
+
+  let total = 0;
+  let perfect = 0;
+
+  for (let day = 0; day < DAYS; day++) {
+
+    let count = 0;
+
+    for (let habit = 0; habit < HABITS; habit++) {
+
+      if (saved[day + "_" + habit]) {
+        count++;
+      }
+
+    }
+
+    total += count;
+
+    if (count === HABITS) {
+      perfect++;
+    }
+
+    const score = document.querySelector(
+      '[data-score="' + day + '"]'
+    );
+
+    score.textContent = count + "/" + HABITS;
+
+    score.classList.toggle(
+      "done",
+      count === HABITS
+    );
+
+    score.parentElement.classList.toggle(
+      "completed",
+      count === HABITS
+    );
+
+  }
+
+  const maximum = DAYS * HABITS;
+
+  const percent = Math.round(
+    (total / maximum) * 100
+  );
+
+  document.getElementById(
+    "completedDays"
+  ).textContent = perfect;
+
+  document.getElementById(
+    "completedHabits"
+  ).textContent = total;
+
+  document.getElementById(
+    "progressPercent"
+  ).textContent = percent + "%";
+
+  document.getElementById(
+    "progressText"
+  ).textContent = total + " / " + maximum;
+
+  document.getElementById(
+    "progressFill"
+  ).style.width = percent + "%";
+
+}
+
+/* INITIALIZE */
+
+render();
+
+</script>
+
+</body>
+</html>
